@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>GameTrooper</title>
+        <script src="jquery-3.2.1.min.js"></script>
+    </head>
+    <body>
+        <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+        <script>
+            // ---------------------------------------------------------------------
+            //                             Initialize Firebase
+            //                                  Source:
+            //                  https://www.youtube.com/watch?v=k1D0_wFlXgo
+            //                                    By:
+            //                                 "Firebase"
+            // ---------------------------------------------------------------------
+            var config = {
+                apiKey: "AIzaSyDHFGeR3m-xfvwVzrhbKUU1-ZYIw1v1PEw",
+                authDomain: "gametrooper-4d735.firebaseapp.com",
+                databaseURL: "https://gametrooper-4d735.firebaseio.com",
+                projectId: "gametrooper-4d735",
+                storageBucket: "gametrooper-4d735.appspot.com",
+                messagingSenderId: "426616390746"
+            };
+            firebase.initializeApp(config);
+            // ---------------------------------------------------------------------
+            
+            // API keys
+            const NEWSAPI_API_KEY = "3fb5d2c9188a4d09b59fcb9408d961b0"; // News API
+            const GIANT_BOMB_API_KEY = "8c8f4bffe68bf33941a29e5c303d5142b7e94ee3"; // Giant Bomb
+            
+            // Firebase database references
+            var newsRef = firebase.database().ref('/news/'); // "news" node
+            var topGamesOutNowRef = firebase.database().ref('/top-games/out-now/'); // "top-games/out-now" node
+            var topGamesUpcomingRef = firebase.database().ref('/top-games/upcoming/'); // "top-games/upcoming" node
+            var quizRef = firebase.database().ref('/quiz/'); // "quiz" node
+            
+            // Array of existing news title in firebase database
+            // Used to prevent adding the same news to the firebase database
+            var existingNewsTitle = [];
+            
+            // Variable that indicates whether there is an existing news title in firebase database
+            // If the number of existing news title is zero (i.e. empty news in firebase database) then add news to firebase database without checking of duplicate news
+            var initialDownload = false;
+            
+            // ------------------------------------------------------------------------------------------------------------------------
+            //                                            Giant Bomb's top games upcoming query 
+            // ------------------------------------------------------------------------------------------------------------------------
+
+            // Get reference to current date for topGamesUpcomingUrl
+            var date = new Date();
+            
+            // Get start date in "YYYY-M-DD" (1-9) and "YYYY-MM-DD" (10-12) format
+            var startDate = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate();
+            
+            // Get next month from current month (1 month ahead of current month)
+            var nextMonth = date.getMonth()+1+1;
+            
+            // Get next year from current year 
+            var nextYear = date.getFullYear();
+            
+            // Apply proper validation to next month and year for the end date 
+            // E.g. If start date = 2017-12-1 then end date = 2018-1-1
+            // E.g. If start date = 2017-5-1 then end date = 2017-6-1      
+            if (nextMonth == 13) {
+                nextMonth %= 12;
+                nextYear += 1;
+            }
+            
+            // Get end date in "YYYY-M-DD" (1-9) and "YYYY-MM-DD" (10-12) format
+            var endDate = nextYear + "-" + nextMonth + "-" + date.getDate(); 
+                        
+            // Giant Bomb API Documentation (Platform ID)
+            // Desired platforms for top upcoming games:
+            // 94 -> PC
+            // 146 -> PS4
+            // 145 -> Xbox One
+            // 157 -> Nintendo Switch
+            var targetPlatforms = "94|146|145|157";
+            
+            // ------------------------------------------------------------------------------------------------------------------------
+            
+            
+            // ------------------------------------------------------------------------------------------------------------------------
+            //                                                          Source:
+            //  https://stackoverflow.com/questions/39820091/how-to-get-properties-values-from-snapshot-val-or-snapshot-exportval-in-fi
+            //                                                            By:
+            //                                                         "cartant"
+            // ------------------------------------------------------------------------------------------------------------------------
+            
+            // Fetch all news from the firebase database
+            newsRef.once('value').then(function(snapshot) {
+                
+                // Loop through all fetched news
+                snapshot.forEach(function (childSnapshot) {
+                    // Get reference to each fetched news and append the referenced news's title to the existingNewsTitle array
+                    var childSnapshotValue = childSnapshot.val();
+                    existingNewsTitle.push(childSnapshotValue.title);
+                });
+                
+                // If the number of existing news title is zero (i.e. empty news in firebase database) then add news to firebase database without checking of duplicate news by setting the initial download to true
+                if (existingNewsTitle.length == 0) {
+                    initialDownload = true;
+                }
+                
+                // Download latest IGN news from News API in JSON format and store each unique news in firebase database
+                var ignUrl = "https://newsapi.org/v1/articles?source=ign&sortBy=latest&apiKey=" + NEWSAPI_API_KEY;
+                downloadNews(ignUrl);
+                
+                // Download latest Polygon news from News API in JSON format and store each unique news in firebase database
+                var polygonUrl = "https://newsapi.org/v1/articles?source=polygon&sortBy=top&apiKey=" + NEWSAPI_API_KEY;
+                downloadNews(polygonUrl);
+                
+                // Download latest top 10 games out now from Giant Bomb API in JSON format and store them in firebase database
+                var topGamesOutNowUrl = "https://www.giantbomb.com/api/reviews/?format=json&api_key=" + GIANT_BOMB_API_KEY + "&limit=10&sort=publish_date:desc";
+                downloadTopGamesOutNow(topGamesOutNowUrl);
+                
+                // Download latest top 10 upcoming games (one month ahead of current date and available in PC, PS4, Xbox One, and Nintendo Switch) from Giant Bomb API in JSON format and store them in firebase database
+                var topGamesUpcomingUrl = "https://www.giantbomb.com/api/games/?format=json&api_key=" + GIANT_BOMB_API_KEY + "&limit=10&filter=original_release_date:" + startDate + " 00:00:00|" + endDate + " 00:00:00,platforms:" + targetPlatforms + "&sort=original_release_date:desc";
+                downloadTopGamesUpcoming(topGamesUpcomingUrl);
+                
+                // Upload and store the quiz questions, answers, and answer details in firebase database
+                uploadQuizzes();
+            });
+            
+            // ------------------------------------------------------------------------------------------------------------------------
+
+            
+            // Function that downloads the latest news from News API based on the given url (ign or polygon) in JSON format and store each unique news in firebase database
+            function downloadNews(url) {
+                $.getJSON(url, function(result){
+                    
+                    // Get the news source (ign or polygon)
+                    var newsSource = result.source;
+                    
+                    // Get all news articles
+                    var newsArticleArray = result.articles;
+                    
+                    // Loop through all news articles
+                    for (var i = 0; i < newsArticleArray.length; i++) {
+                        
+                        // Only process news article that has a date published (publishedAt must NOT be null)
+                        if (newsArticleArray[i].publishedAt != null) {
+                            
+                            // Check whether there is an existing news title in firebase database
+                            // If the number of existing news title is zero (i.e. empty news in firebase database) then add news to firebase database without checking of duplicate news
+                            // If the number of existing news title is NOT zero (i.e. news in firebase database exists) then add unique news to firebase database by checking for duplicate news
+                            if (initialDownload) {
+                                initialDownload = false; // News will now exist in firebase database as new news will be added
+                                existingNewsTitle.push(newsArticleArray[i].title); // Add the news title to the existingNewsTitle array
+                                newsArticleArray[i].source = newsSource; // Add the news source key-value pair to the news article
+                                var newsItemRef = newsRef.push(); // Create a new child node in "news" node with a unique id as key and reference it
+                                newsItemRef.set(newsArticleArray[i]); // Set the value for the newly created child node to the news article
+                            }
+                            else {
+                                // Variable that checks whether the news title already exist in existingNewsTitle array
+                                var titleExist = false;
+                                
+                                // Loop through the existingNewsTitle array and check whether that particular news title already exist or not
+                                // If the news title exists in existingNewsTitle array then break the loop and indicates that the news title exists
+                                for (var j = 0; j < existingNewsTitle.length; j++) {
+                                    if (newsArticleArray[i].title === existingNewsTitle[j]) {
+                                        titleExist = true;
+                                        break;
+                                    }
+                                }
+                                
+                                // If the news title does NOT exist in existingNewsTitle array
+                                if (!titleExist) {
+                                    existingNewsTitle.push(newsArticleArray[i].title); // Add the news title to the existingNewsTitle array
+                                    newsArticleArray[i].source = newsSource; // Add the news source key-value pair to the news article
+                                    var newsItemRef = newsRef.push(); // Create a new child node in "news" node with a unique id as key and reference it
+                                    newsItemRef.set(newsArticleArray[i]); // Set the value for the newly created child node to the news article
+                                }
+                            }
+                            
+                        }
+                    }
+                    
+                    // ---------------------------------------------------------------------------------------------------------------
+                    //                                                  Source:
+                    // 1. https://stackoverflow.com/questions/6685396/execute-the-setinterval-function-without-delay-the-first-time
+                    // 2. https://stackoverflow.com/questions/457826/pass-parameters-in-setinterval-function
+                    //                                                    By:
+                    //                                              1. "Alnitak"
+                    //                                              2. "tvanfosson"                    
+                    // ---------------------------------------------------------------------------------------------------------------
+                    
+                    // Set delay of 5 minutes and download latest news from News API again every 5 minutes
+//                    const DELAY = 15*1000; // Delay -> 15 seconds (for testing purposes)
+                    const DELAY = 5*60*1000; // Delay -> 5 minutes
+                    setTimeout(function() { downloadNews(url); }, DELAY);
+                    
+                    // ---------------------------------------------------------------------------------------------------------------
+                    
+                });
+            }
+            
+            
+            // Function that downloads the latest top 10 games out now from Giant Bomb API in JSON format and store them in firebase database
+            function downloadTopGamesOutNow(url) {
+                $.getJSON(url, function(result){
+                    
+                    // Get all top 10 games out now
+                    var topGamesOutNowArray = result.results;
+                    
+                    // Loop through all top 10 games out now
+                    for (var i = 0; i < topGamesOutNowArray.length; i++) {
+                        
+                        // Dictionary that represents each top games out now attribute key-value pairs
+                        var topGamesOutNowDict = {};
+                        
+                        // Get the available platform(s), Giant Bomb's game ID, title, Giant Bomb's rating, and url pointing to the review on Giant Bomb  
+                        topGamesOutNowDict["platform"] = topGamesOutNowArray[i].platforms;
+                        topGamesOutNowDict["game-id"] = topGamesOutNowArray[i].game.id;
+                        topGamesOutNowDict["title"] = topGamesOutNowArray[i].game.name;
+                        topGamesOutNowDict["rating"] = topGamesOutNowArray[i].score;
+                        topGamesOutNowDict["url"] = topGamesOutNowArray[i].site_detail_url;
+                        
+                        // Url to retrieve a more detailed information about a specific top games out now by using the corresponding Giant Bomb's game ID
+                        // Used to get the image url of the corresponding top games out now if available
+                        var gameUrl = "https://www.giantbomb.com/api/game/" + topGamesOutNowDict["game-id"] + "/?format=json&api_key=" + GIANT_BOMB_API_KEY;
+                        
+                        // Attempt to get the desired url image for a particular top games out now
+                        // Require $.ajax instead of $.getJSON to disable async task
+                        $.ajax({
+                            url: gameUrl,
+                            dataType: 'json',
+                            async: false,
+                            success: function(data) {
+                                // Check whether there is an image url available for the specified game
+                                if (data.results.image != null) {
+                                    // Check whether the desired image url is available or not
+                                    // If it is available then get the desired image url
+                                    if (data.results.image.screen_url != null) {
+                                        topGamesOutNowDict["urlToImage"] = data.results.image.screen_url;
+                                    }
+                                }
+                            }
+                        });
+                        
+                        // Create a new child node in "top-games/out-now" node 
+                        // The key for the newly created child node is a number between 1 to 10 and set the value for the key to be the topGamesOutNowDict
+                        topGamesOutNowRef.child(i+1).set(topGamesOutNowDict);
+                    }
+                    
+                    // ---------------------------------------------------------------------------------------------------------------
+                    //                                                  Source:
+                    // 1. https://stackoverflow.com/questions/6685396/execute-the-setinterval-function-without-delay-the-first-time
+                    // 2. https://stackoverflow.com/questions/457826/pass-parameters-in-setinterval-function
+                    //                                                    By:
+                    //                                              1. "Alnitak"
+                    //                                              2. "tvanfosson"                    
+                    // ---------------------------------------------------------------------------------------------------------------
+
+                    // Set delay of 12 hours and download latest top 10 games out now from Giant Bomb API again every 12 hours
+//                    const DELAY = 15*1000; // Delay -> 15 seconds (for testing purposes)
+                    const DELAY = 12*60*60*1000; // Delay -> 12 hours
+                    setTimeout(function() { downloadTopGamesOutNow(url); }, DELAY);
+                    
+                    // ---------------------------------------------------------------------------------------------------------------
+                    
+                });
+            }
+            
+            
+            // Function that downloads the latest top 10 upcoming games (one month ahead of current date and available in PC, PS4, Xbox One, and Nintendo Switch) from Giant Bomb API in JSON format and store them in firebase database
+            function downloadTopGamesUpcoming(url) {
+                $.getJSON(url, function(result){
+                    
+                    // Get all top 10 upcoming games
+                    var topGamesUpcomingArray = result.results;
+                    
+                    // Loop through all top 10 upcoming games
+                    for (var i = 0; i < topGamesUpcomingArray.length; i++) {
+                        
+                        // Dictionary that represents each top games upcoming attribute key-value pairs
+                        var topGamesUpcomingDict = {};
+                                                
+                        // Get the available platform(s)
+                        var platformsArray = topGamesUpcomingArray[i].platforms;
+                        
+                        // Array of available platform name
+                        var platformNameArray = [];
+                        
+                        // Loop through all available platform(s) and append the platform name to the platformNameArray
+                        for (var j = 0; j < platformsArray.length; j++) {
+                            platformNameArray.push(platformsArray[j].name);
+                        }
+                        
+                        // Separate each platform name with ", "
+                        topGamesUpcomingDict["platform"] = platformNameArray.join(", ");
+                        
+                        // Get the Giant Bomb's game ID, title, and url pointing to the game on Giant Bomb
+                        topGamesUpcomingDict["game-id"] = topGamesUpcomingArray[i].id;
+                        topGamesUpcomingDict["title"] = topGamesUpcomingArray[i].name;
+                        topGamesUpcomingDict["url"] = topGamesUpcomingArray[i].site_detail_url;
+                        
+                        // Check whether there is an image url available for the game
+                        if (topGamesUpcomingArray[i].image != null) {
+                            // Check whether the desired image url is available or not
+                            // If it is available then get the desired image url
+                            if (topGamesUpcomingArray[i].image.screen_url != null) {
+                                topGamesUpcomingDict["urlToImage"] = topGamesUpcomingArray[i].image.screen_url;
+                            }
+                        }
+                        
+                        // Create a new child node in "top-games/upcoming" node 
+                        // The key for the newly created child node is a number between 1 to 10 and set the value for the key to be the topGamesUpcomingDict
+                        topGamesUpcomingRef.child(i+1).set(topGamesUpcomingDict);
+                    }
+                    
+                    // ---------------------------------------------------------------------------------------------------------------
+                    //                                                  Source:
+                    // 1. https://stackoverflow.com/questions/6685396/execute-the-setinterval-function-without-delay-the-first-time
+                    // 2. https://stackoverflow.com/questions/457826/pass-parameters-in-setinterval-function
+                    //                                                    By:
+                    //                                              1. "Alnitak"
+                    //                                              2. "tvanfosson"                    
+                    // ---------------------------------------------------------------------------------------------------------------
+
+                    // Set delay of 12 hours and download latest top 10 upcoming games from Giant Bomb API again every 12 hours
+//                    const DELAY = 15*1000; // Delay -> 15 seconds (for testing purposes)
+                    const DELAY = 12*60*60*1000; // Delay -> 12 hours
+                    setTimeout(function() { downloadTopGamesUpcoming(url); }, DELAY);
+                    
+                    // ---------------------------------------------------------------------------------------------------------------
+                });
+            }
+            
+            
+            // Function that uploads and stores the quiz questions, answers, and answer details in firebase database
+            function uploadQuizzes() {
+                
+            // ------------------------------------------------------------------------------------------------------------------------
+            //                                                          Source:
+            //                                 https://www.sporcle.com/games/bazmerelda/true-or-false-gaming
+            //                                                            By:
+            //                                                        "bazmerelda"
+            // ------------------------------------------------------------------------------------------------------------------------
+                
+                // Array of quiz questions
+                var questionArray = [
+                    "In Street Fighter, Guile can perform a Hadouken",
+                    "Mario is Luigi's older twin brother",
+                    "A Charmander can be obtained in Pokémon Red but not Blue",
+                    "The first Grand Theft Auto game begins in Liberty City",
+                    "Mega Man is known as Rockman in Japan"
+                ];
+                
+                // Array of quiz answers
+                var answerArray = [
+                    "false",
+                    "true",
+                    "false",
+                    "true",
+                    "true"
+                ];
+                
+                // Array of quiz answer details
+                var detailArray = [
+                    "Guile's special move is the Sonic Boom",
+                    "Although Luigi is the taller twin, Mario was born first",
+                    "Charmander is a starting Pokémon in both Red & Blue",
+                    "You later move on to San Andreas and Vice City",
+                    "Mega Man has appeared in over 50 games since 1987"
+                ];
+                
+            // ------------------------------------------------------------------------------------------------------------------------
+                
+                // Loop through all quiz questions
+                for (var i = 0; i < questionArray.length; i++) {
+                    // Create a new child node in "quiz" node 
+                    // The key for the newly created child node is the quiz question and set the quiz answer and answer details key-value pairs as the value for the key
+                    quizRef.child(questionArray[i]).set({
+                        answer: answerArray[i],
+                        detail: detailArray[i]
+                    });
+                }
+                
+            }
+            
+        </script>
+    </body>
+</html>
