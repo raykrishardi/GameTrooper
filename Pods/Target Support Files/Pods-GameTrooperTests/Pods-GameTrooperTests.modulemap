@@ -1,0 +1,6 @@
+framework module Pods_GameTrooperTests {
+  umbrella header "Pods-GameTrooperTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

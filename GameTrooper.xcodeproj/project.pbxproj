@@ -7,14 +7,40 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		434CB600E9EB8B899773E571 /* Pods_GameTrooperUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 287D7F7E1D8FEE3473FE05B7 /* Pods_GameTrooperUITests.framework */; };
+		44F46824FF24C0880151DEA3 /* Pods_GameTrooperTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3C5A498BC069E8CCF815B1 /* Pods_GameTrooperTests.framework */; };
+		4F6E153867C9E264BE5D597E /* Pods_GameTrooper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB8EB49D4023DF4571BC5E3E /* Pods_GameTrooper.framework */; };
+		71048DD11EDD478A005D8D81 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71048DD01EDD478A005D8D81 /* StringExtension.swift */; };
+		7135538A1EA90F2A002F4712 /* GameNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713553891EA90F2A002F4712 /* GameNewsViewController.swift */; };
+		7136A0E31EB618B4004C5255 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7136A0E21EB618B4004C5255 /* News.swift */; };
 		714A7BA51EA334FC00170AB5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714A7BA41EA334FC00170AB5 /* AppDelegate.swift */; };
-		714A7BA71EA334FC00170AB5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714A7BA61EA334FC00170AB5 /* ViewController.swift */; };
 		714A7BAA1EA334FC00170AB5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 714A7BA81EA334FC00170AB5 /* Main.storyboard */; };
 		714A7BAD1EA334FC00170AB5 /* GameTrooper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 714A7BAB1EA334FC00170AB5 /* GameTrooper.xcdatamodeld */; };
 		714A7BAF1EA334FC00170AB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 714A7BAE1EA334FC00170AB5 /* Assets.xcassets */; };
 		714A7BB21EA334FC00170AB5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 714A7BB01EA334FC00170AB5 /* LaunchScreen.storyboard */; };
 		714A7BBD1EA334FC00170AB5 /* GameTrooperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714A7BBC1EA334FC00170AB5 /* GameTrooperTests.swift */; };
 		714A7BC81EA334FC00170AB5 /* GameTrooperUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714A7BC71EA334FC00170AB5 /* GameTrooperUITests.swift */; };
+		714A7BDD1EA338DB00170AB5 /* GameNewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714A7BDC1EA338DB00170AB5 /* GameNewsTableViewCell.swift */; };
+		714A7BEE1EA3B02B00170AB5 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 714A7BED1EA3B02B00170AB5 /* CoreData.framework */; };
+		7182EF281EAD9DA900B29FED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7182EF271EAD9DA900B29FED /* GoogleService-Info.plist */; };
+		7182EF291EAD9DA900B29FED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7182EF271EAD9DA900B29FED /* GoogleService-Info.plist */; };
+		7182EF2A1EAD9DA900B29FED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7182EF271EAD9DA900B29FED /* GoogleService-Info.plist */; };
+		71835DA91ECC9A05002C1DCD /* TopGamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71835DA81ECC9A05002C1DCD /* TopGamesViewController.swift */; };
+		71835DAB1ECC9F79002C1DCD /* TopGamesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71835DAA1ECC9F79002C1DCD /* TopGamesTableViewCell.swift */; };
+		719182BA1EBF42DC00B24A8B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719182B91EBF42DC00B24A8B /* MapViewController.swift */; };
+		719182BC1EBF5F6400B24A8B /* GameStoresTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719182BB1EBF5F6400B24A8B /* GameStoresTableViewCell.swift */; };
+		719182BE1EBF5FAE00B24A8B /* SpeechRecognizerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719182BD1EBF5FAE00B24A8B /* SpeechRecognizerTableViewCell.swift */; };
+		71B4C76E1EC09E65003DB256 /* GameStoreAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B4C76D1EC09E65003DB256 /* GameStoreAnnotation.swift */; };
+		71B840FE1ECADF4100D87E39 /* QuizQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B840FD1ECADF4100D87E39 /* QuizQuestion.swift */; };
+		71B8C6C61EE004A00044109D /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B8C6C51EE004A00044109D /* ReachabilityHelper.swift */; };
+		71BEB1C91EA5CB0B00CDD998 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BEB1C81EA5CB0B00CDD998 /* DateExtension.swift */; };
+		71BEB20C1EA64CDB00CDD998 /* ActivityIndicatorViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BEB20B1EA64CDB00CDD998 /* ActivityIndicatorViewHelper.swift */; };
+		71BFA7E21EDC30A3005E8E98 /* BannerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BFA7E11EDC30A3005E8E98 /* BannerHelper.swift */; };
+		71BFA7E41EDC7305005E8E98 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BFA7E31EDC7305005E8E98 /* AboutViewController.swift */; };
+		71EC4CA51EA4CC160090DE56 /* GameNewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71EC4CA41EA4CC160090DE56 /* GameNewsDetailViewController.swift */; };
+		71F2691A1ECAA1DF0080B60C /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F269191ECAA1DF0080B60C /* QuizViewController.swift */; };
+		71FEB0CA1ECD6737007786A1 /* TopGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FEB0C91ECD6737007786A1 /* TopGame.swift */; };
+		71FEB0CC1ECDA048007786A1 /* TopGamesDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FEB0CB1ECDA048007786A1 /* TopGamesDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,9 +61,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		23B714FE62E7A0D3619806E4 /* Pods-GameTrooper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameTrooper.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GameTrooper/Pods-GameTrooper.debug.xcconfig"; sourceTree = "<group>"; };
+		287D7F7E1D8FEE3473FE05B7 /* Pods_GameTrooperUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GameTrooperUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6BD30475DE7575B8AE8F792A /* Pods-GameTrooperUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameTrooperUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GameTrooperUITests/Pods-GameTrooperUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		71048DD01EDD478A005D8D81 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		713553891EA90F2A002F4712 /* GameNewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameNewsViewController.swift; sourceTree = "<group>"; };
+		7136A0E21EB618B4004C5255 /* News.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		714A7BA11EA334FC00170AB5 /* GameTrooper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameTrooper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		714A7BA41EA334FC00170AB5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		714A7BA61EA334FC00170AB5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		714A7BA91EA334FC00170AB5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		714A7BAC1EA334FC00170AB5 /* GameTrooper.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GameTrooper.xcdatamodel; sourceTree = "<group>"; };
 		714A7BAE1EA334FC00170AB5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +80,31 @@
 		714A7BC31EA334FC00170AB5 /* GameTrooperUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GameTrooperUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		714A7BC71EA334FC00170AB5 /* GameTrooperUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTrooperUITests.swift; sourceTree = "<group>"; };
 		714A7BC91EA334FC00170AB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		714A7BDC1EA338DB00170AB5 /* GameNewsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameNewsTableViewCell.swift; sourceTree = "<group>"; };
+		714A7BED1EA3B02B00170AB5 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		7182EF271EAD9DA900B29FED /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		71835DA81ECC9A05002C1DCD /* TopGamesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopGamesViewController.swift; sourceTree = "<group>"; };
+		71835DAA1ECC9F79002C1DCD /* TopGamesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopGamesTableViewCell.swift; sourceTree = "<group>"; };
+		719182B91EBF42DC00B24A8B /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		719182BB1EBF5F6400B24A8B /* GameStoresTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameStoresTableViewCell.swift; sourceTree = "<group>"; };
+		719182BD1EBF5FAE00B24A8B /* SpeechRecognizerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechRecognizerTableViewCell.swift; sourceTree = "<group>"; };
+		71B4C76D1EC09E65003DB256 /* GameStoreAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameStoreAnnotation.swift; sourceTree = "<group>"; };
+		71B840FD1ECADF4100D87E39 /* QuizQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizQuestion.swift; sourceTree = "<group>"; };
+		71B8C6C51EE004A00044109D /* ReachabilityHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityHelper.swift; sourceTree = "<group>"; };
+		71BEB1C81EA5CB0B00CDD998 /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		71BEB20B1EA64CDB00CDD998 /* ActivityIndicatorViewHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorViewHelper.swift; sourceTree = "<group>"; };
+		71BFA7E11EDC30A3005E8E98 /* BannerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerHelper.swift; sourceTree = "<group>"; };
+		71BFA7E31EDC7305005E8E98 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		71EC4CA41EA4CC160090DE56 /* GameNewsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameNewsDetailViewController.swift; sourceTree = "<group>"; };
+		71F269191ECAA1DF0080B60C /* QuizViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
+		71FEB0C91ECD6737007786A1 /* TopGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopGame.swift; sourceTree = "<group>"; };
+		71FEB0CB1ECDA048007786A1 /* TopGamesDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopGamesDetailViewController.swift; sourceTree = "<group>"; };
+		7EB5EB1B84138B5D3101C652 /* Pods-GameTrooper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameTrooper.release.xcconfig"; path = "Pods/Target Support Files/Pods-GameTrooper/Pods-GameTrooper.release.xcconfig"; sourceTree = "<group>"; };
+		83FE4124F6073F168838DD69 /* Pods-GameTrooperUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameTrooperUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GameTrooperUITests/Pods-GameTrooperUITests.release.xcconfig"; sourceTree = "<group>"; };
+		858D31B65D3553B4A007B5B5 /* Pods-GameTrooperTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameTrooperTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GameTrooperTests/Pods-GameTrooperTests.debug.xcconfig"; sourceTree = "<group>"; };
+		9A3C5A498BC069E8CCF815B1 /* Pods_GameTrooperTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GameTrooperTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9BCA48C63C02C64FD8FB80AB /* Pods-GameTrooperTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameTrooperTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GameTrooperTests/Pods-GameTrooperTests.release.xcconfig"; sourceTree = "<group>"; };
+		DB8EB49D4023DF4571BC5E3E /* Pods_GameTrooper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GameTrooper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +112,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				714A7BEE1EA3B02B00170AB5 /* CoreData.framework in Frameworks */,
+				4F6E153867C9E264BE5D597E /* Pods_GameTrooper.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44F46824FF24C0880151DEA3 /* Pods_GameTrooperTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +129,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				434CB600E9EB8B899773E571 /* Pods_GameTrooperUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A84A4FD02B99D3623F8866B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				23B714FE62E7A0D3619806E4 /* Pods-GameTrooper.debug.xcconfig */,
+				7EB5EB1B84138B5D3101C652 /* Pods-GameTrooper.release.xcconfig */,
+				858D31B65D3553B4A007B5B5 /* Pods-GameTrooperTests.debug.xcconfig */,
+				9BCA48C63C02C64FD8FB80AB /* Pods-GameTrooperTests.release.xcconfig */,
+				6BD30475DE7575B8AE8F792A /* Pods-GameTrooperUITests.debug.xcconfig */,
+				83FE4124F6073F168838DD69 /* Pods-GameTrooperUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		714A7B981EA334FC00170AB5 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +156,8 @@
 				714A7BBB1EA334FC00170AB5 /* GameTrooperTests */,
 				714A7BC61EA334FC00170AB5 /* GameTrooperUITests */,
 				714A7BA21EA334FC00170AB5 /* Products */,
+				714A7BEC1EA3B02B00170AB5 /* Frameworks */,
+				1A84A4FD02B99D3623F8866B /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,13 +174,17 @@
 		714A7BA31EA334FC00170AB5 /* GameTrooper */ = {
 			isa = PBXGroup;
 			children = (
+				71BEB20A1EA64C9100CDD998 /* Helper */,
+				714A7BD51EA3350800170AB5 /* Model */,
+				714A7BDB1EA338C600170AB5 /* Cell */,
+				714A7BD61EA3350E00170AB5 /* Controller */,
 				714A7BA41EA334FC00170AB5 /* AppDelegate.swift */,
-				714A7BA61EA334FC00170AB5 /* ViewController.swift */,
 				714A7BA81EA334FC00170AB5 /* Main.storyboard */,
 				714A7BAE1EA334FC00170AB5 /* Assets.xcassets */,
 				714A7BB01EA334FC00170AB5 /* LaunchScreen.storyboard */,
 				714A7BB31EA334FC00170AB5 /* Info.plist */,
 				714A7BAB1EA334FC00170AB5 /* GameTrooper.xcdatamodeld */,
+				7182EF271EAD9DA900B29FED /* GoogleService-Info.plist */,
 			);
 			path = GameTrooper;
 			sourceTree = "<group>";
@@ -128,6 +207,65 @@
 			path = GameTrooperUITests;
 			sourceTree = "<group>";
 		};
+		714A7BD51EA3350800170AB5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7136A0E21EB618B4004C5255 /* News.swift */,
+				71FEB0C91ECD6737007786A1 /* TopGame.swift */,
+				71B4C76D1EC09E65003DB256 /* GameStoreAnnotation.swift */,
+				71B840FD1ECADF4100D87E39 /* QuizQuestion.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		714A7BD61EA3350E00170AB5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				713553891EA90F2A002F4712 /* GameNewsViewController.swift */,
+				71EC4CA41EA4CC160090DE56 /* GameNewsDetailViewController.swift */,
+				71835DA81ECC9A05002C1DCD /* TopGamesViewController.swift */,
+				71FEB0CB1ECDA048007786A1 /* TopGamesDetailViewController.swift */,
+				719182B91EBF42DC00B24A8B /* MapViewController.swift */,
+				71F269191ECAA1DF0080B60C /* QuizViewController.swift */,
+				71BFA7E31EDC7305005E8E98 /* AboutViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		714A7BDB1EA338C600170AB5 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				714A7BDC1EA338DB00170AB5 /* GameNewsTableViewCell.swift */,
+				71835DAA1ECC9F79002C1DCD /* TopGamesTableViewCell.swift */,
+				719182BB1EBF5F6400B24A8B /* GameStoresTableViewCell.swift */,
+				719182BD1EBF5FAE00B24A8B /* SpeechRecognizerTableViewCell.swift */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
+		714A7BEC1EA3B02B00170AB5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				714A7BED1EA3B02B00170AB5 /* CoreData.framework */,
+				DB8EB49D4023DF4571BC5E3E /* Pods_GameTrooper.framework */,
+				9A3C5A498BC069E8CCF815B1 /* Pods_GameTrooperTests.framework */,
+				287D7F7E1D8FEE3473FE05B7 /* Pods_GameTrooperUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		71BEB20A1EA64C9100CDD998 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				71BEB1C81EA5CB0B00CDD998 /* DateExtension.swift */,
+				71048DD01EDD478A005D8D81 /* StringExtension.swift */,
+				71BEB20B1EA64CDB00CDD998 /* ActivityIndicatorViewHelper.swift */,
+				71BFA7E11EDC30A3005E8E98 /* BannerHelper.swift */,
+				71B8C6C51EE004A00044109D /* ReachabilityHelper.swift */,
+			);
+			name = Helper;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +273,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 714A7BCC1EA334FC00170AB5 /* Build configuration list for PBXNativeTarget "GameTrooper" */;
 			buildPhases = (
+				428214A328A1EDABEE67B7BC /* [CP] Check Pods Manifest.lock */,
 				714A7B9D1EA334FC00170AB5 /* Sources */,
 				714A7B9E1EA334FC00170AB5 /* Frameworks */,
 				714A7B9F1EA334FC00170AB5 /* Resources */,
+				AEBD6AC79526EC84EC1F9C9D /* [CP] Embed Pods Frameworks */,
+				621929A87403717F259B77AC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -152,9 +293,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 714A7BCF1EA334FC00170AB5 /* Build configuration list for PBXNativeTarget "GameTrooperTests" */;
 			buildPhases = (
+				C129100C6EBB8EA06AF5296A /* [CP] Check Pods Manifest.lock */,
 				714A7BB41EA334FC00170AB5 /* Sources */,
 				714A7BB51EA334FC00170AB5 /* Frameworks */,
 				714A7BB61EA334FC00170AB5 /* Resources */,
+				24FDF04370899D23BD52587E /* [CP] Embed Pods Frameworks */,
+				5BA05401F6CBA87E7F36C76C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -170,9 +314,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 714A7BD21EA334FC00170AB5 /* Build configuration list for PBXNativeTarget "GameTrooperUITests" */;
 			buildPhases = (
+				44E8177B66D68BD66C7262BA /* [CP] Check Pods Manifest.lock */,
 				714A7BBF1EA334FC00170AB5 /* Sources */,
 				714A7BC01EA334FC00170AB5 /* Frameworks */,
 				714A7BC11EA334FC00170AB5 /* Resources */,
+				03CA1C15931DF74B46A2E294 /* [CP] Embed Pods Frameworks */,
+				A4F2C2D8DC96011F19AF4874 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -196,6 +343,7 @@
 				TargetAttributes = {
 					714A7BA01EA334FC00170AB5 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = HL4FW5S9QY;
 						ProvisioningStyle = Automatic;
 					};
 					714A7BB71EA334FC00170AB5 = {
@@ -236,6 +384,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				714A7BB21EA334FC00170AB5 /* LaunchScreen.storyboard in Resources */,
+				7182EF281EAD9DA900B29FED /* GoogleService-Info.plist in Resources */,
 				714A7BAF1EA334FC00170AB5 /* Assets.xcassets in Resources */,
 				714A7BAA1EA334FC00170AB5 /* Main.storyboard in Resources */,
 			);
@@ -245,6 +394,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7182EF291EAD9DA900B29FED /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,19 +402,177 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7182EF2A1EAD9DA900B29FED /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		03CA1C15931DF74B46A2E294 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GameTrooperUITests/Pods-GameTrooperUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		24FDF04370899D23BD52587E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GameTrooperTests/Pods-GameTrooperTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		428214A328A1EDABEE67B7BC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		44E8177B66D68BD66C7262BA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		5BA05401F6CBA87E7F36C76C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GameTrooperTests/Pods-GameTrooperTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		621929A87403717F259B77AC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GameTrooper/Pods-GameTrooper-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A4F2C2D8DC96011F19AF4874 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GameTrooperUITests/Pods-GameTrooperUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AEBD6AC79526EC84EC1F9C9D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GameTrooper/Pods-GameTrooper-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C129100C6EBB8EA06AF5296A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		714A7B9D1EA334FC00170AB5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				714A7BA71EA334FC00170AB5 /* ViewController.swift in Sources */,
+				714A7BDD1EA338DB00170AB5 /* GameNewsTableViewCell.swift in Sources */,
+				719182BC1EBF5F6400B24A8B /* GameStoresTableViewCell.swift in Sources */,
+				71B840FE1ECADF4100D87E39 /* QuizQuestion.swift in Sources */,
+				71B4C76E1EC09E65003DB256 /* GameStoreAnnotation.swift in Sources */,
+				719182BE1EBF5FAE00B24A8B /* SpeechRecognizerTableViewCell.swift in Sources */,
+				71BEB1C91EA5CB0B00CDD998 /* DateExtension.swift in Sources */,
 				714A7BA51EA334FC00170AB5 /* AppDelegate.swift in Sources */,
 				714A7BAD1EA334FC00170AB5 /* GameTrooper.xcdatamodeld in Sources */,
+				71048DD11EDD478A005D8D81 /* StringExtension.swift in Sources */,
+				719182BA1EBF42DC00B24A8B /* MapViewController.swift in Sources */,
+				71FEB0CC1ECDA048007786A1 /* TopGamesDetailViewController.swift in Sources */,
+				71835DAB1ECC9F79002C1DCD /* TopGamesTableViewCell.swift in Sources */,
+				71F2691A1ECAA1DF0080B60C /* QuizViewController.swift in Sources */,
+				71BFA7E21EDC30A3005E8E98 /* BannerHelper.swift in Sources */,
+				71BEB20C1EA64CDB00CDD998 /* ActivityIndicatorViewHelper.swift in Sources */,
+				71FEB0CA1ECD6737007786A1 /* TopGame.swift in Sources */,
+				71835DA91ECC9A05002C1DCD /* TopGamesViewController.swift in Sources */,
+				71EC4CA51EA4CC160090DE56 /* GameNewsDetailViewController.swift in Sources */,
+				7136A0E31EB618B4004C5255 /* News.swift in Sources */,
+				71BFA7E41EDC7305005E8E98 /* AboutViewController.swift in Sources */,
+				71B8C6C61EE004A00044109D /* ReachabilityHelper.swift in Sources */,
+				7135538A1EA90F2A002F4712 /* GameNewsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,8 +720,10 @@
 		};
 		714A7BCD1EA334FC00170AB5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 23B714FE62E7A0D3619806E4 /* Pods-GameTrooper.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = HL4FW5S9QY;
 				INFOPLIST_FILE = GameTrooper/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Monash.GameTrooper;
@@ -424,8 +734,10 @@
 		};
 		714A7BCE1EA334FC00170AB5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7EB5EB1B84138B5D3101C652 /* Pods-GameTrooper.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = HL4FW5S9QY;
 				INFOPLIST_FILE = GameTrooper/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Monash.GameTrooper;
@@ -436,6 +748,7 @@
 		};
 		714A7BD01EA334FC00170AB5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 858D31B65D3553B4A007B5B5 /* Pods-GameTrooperTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -450,6 +763,7 @@
 		};
 		714A7BD11EA334FC00170AB5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9BCA48C63C02C64FD8FB80AB /* Pods-GameTrooperTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -464,6 +778,7 @@
 		};
 		714A7BD31EA334FC00170AB5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6BD30475DE7575B8AE8F792A /* Pods-GameTrooperUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = GameTrooperUITests/Info.plist;
@@ -477,6 +792,7 @@
 		};
 		714A7BD41EA334FC00170AB5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 83FE4124F6073F168838DD69 /* Pods-GameTrooperUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = GameTrooperUITests/Info.plist;
@@ -507,6 +823,7 @@
 				714A7BCE1EA334FC00170AB5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		714A7BCF1EA334FC00170AB5 /* Build configuration list for PBXNativeTarget "GameTrooperTests" */ = {
 			isa = XCConfigurationList;
@@ -515,6 +832,7 @@
 				714A7BD11EA334FC00170AB5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		714A7BD21EA334FC00170AB5 /* Build configuration list for PBXNativeTarget "GameTrooperUITests" */ = {
 			isa = XCConfigurationList;
@@ -523,6 +841,7 @@
 				714A7BD41EA334FC00170AB5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

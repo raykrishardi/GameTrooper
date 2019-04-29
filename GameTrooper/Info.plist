@@ -2,6 +2,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -28,6 +33,12 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>GameTrooper requires your location to provide list of nearby game stores</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>GameTrooper requires access to your microphone to record your speech when you tap on the microphone button </string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>GameTrooper requires access to speech recognition to transcribe the captured record when you tap on the microphone button</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
