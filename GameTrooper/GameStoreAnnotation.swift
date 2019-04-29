@@ -26,7 +26,7 @@ class GameStoreAnnotation: NSObject, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
     
     // Constant that represents the firebase database reference to a particular game store annotation
-    let ref: FIRDatabaseReference?
+    let ref: DatabaseReference?
     
     // 5-parameter constructor that initialises the game store annotation object with the appropriate values 
     init(initKey: String, initTitle: String, initSubtitle: String, initLatitude: Double, initLongitude: Double) {
@@ -50,7 +50,7 @@ class GameStoreAnnotation: NSObject, MKAnnotation {
     //---------------------------------------------------------------------------------------------------------------------------
     
     // 1-parameter constructor that initialises the game store annotation object with the appropriate values based on the given firebase data snapshot
-    init(snapshot: FIRDataSnapshot) {
+    init(snapshot: DataSnapshot) {
         
         // Initialise the key based on the given firebase data snapshot's key
         key = snapshot.key

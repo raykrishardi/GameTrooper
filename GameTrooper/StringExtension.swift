@@ -57,12 +57,17 @@ extension String {
         // Constant that represents the collection of attributes to be applied to the attributed string
         // In this case, whether the text should be bold or not and whether the text alignment should be center/justified/left
         let attributes = [
-            NSFontAttributeName: fontAttribute,
-            NSParagraphStyleAttributeName: style
-            ] as [String : Any]
+            NSAttributedString.Key.font: fontAttribute,
+            NSAttributedString.Key.paragraphStyle: style
+            ]
+        
+//        let attributes = [
+//            NSFontAttributeName: fontAttribute,
+//            NSParagraphStyleAttributeName: style
+//            ] as [String : Any]
         
         // Create and return the attributed string with the appropriate content and attributes
-        let attributedString = NSMutableAttributedString(string: self, attributes: attributes)
+        let attributedString = NSMutableAttributedString(string: self, attributes: attributes as [NSAttributedString.Key : Any])
         return attributedString
     }
     

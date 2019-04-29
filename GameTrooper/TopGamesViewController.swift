@@ -33,7 +33,7 @@ class TopGamesViewController: UIViewController, UITableViewDataSource, UITableVi
     var topGamesUpcomingArray: [TopGame] = []
     
     // Variable that represents a reference to the "top-games" node in firebase database
-    var topGamesRef: FIRDatabaseReference!
+    var topGamesRef: DatabaseReference!
 
     // Function that will be executed when there is a change in the segmented control value (i.e. the user navigates to "Out Now" section from "Upcoming" section and vice versa)
     @IBAction func topGamesSegmentedControlValueChanged() {
@@ -64,7 +64,7 @@ class TopGamesViewController: UIViewController, UITableViewDataSource, UITableVi
         ReachabilityHelper.checkForInternetConnection()
         
         // Get a reference to the "top-games" node in firebase database and make sure that the firebase database is kept synced (i.e. sync local cached data with the data in firebase database)
-        topGamesRef = FIRDatabase.database().reference(withPath: "top-games")
+        topGamesRef = Database.database().reference(withPath: "top-games")
         topGamesRef.keepSynced(true)
         
         // Setup and start the activity indicator view when the top games are about to be fetched from the firebase database
@@ -174,7 +174,7 @@ class TopGamesViewController: UIViewController, UITableViewDataSource, UITableVi
             // If the urlToImage attribute value is a valid url then set the appropriate image to the image view by using the given url (SDWebImage is used to download and set the image from the url)
             // If the urlToImage attribute value is NOT a valid url then set the default placeholder image to the image view
             // Options -> continue downloading the image if the app goes to background and enables progressive download
-            topGamesCell.topGamesImageView.sd_setImage(with: topGameUrlToImage, placeholderImage: #imageLiteral(resourceName: "placeholder-image"), options: [.continueInBackground, .progressiveDownload])
+            topGamesCell.topGamesImageView.sd_setImage(with: topGameUrlToImage, placeholderImage: #imageLiteral(resourceName: "placeholder-image"))
             
             //-------------------------------------------------------------------------------------------------------------------
         }

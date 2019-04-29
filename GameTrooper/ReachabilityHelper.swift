@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import ReachabilitySwift
+import Reachability
 
 // Class that helps to setup and manage reachability notification (i.e. check for internet connection)
 class ReachabilityHelper {
@@ -26,7 +26,7 @@ class ReachabilityHelper {
     // 1. Add an observer that monitors the device's network state
     // 2. Start the notifier to get the current status of the device's network state
     static func setupReachabilityNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(self.reachabilityChanged),name: ReachabilityChangedNotification,object: reachability)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.reachabilityChanged),name: Notification.Name.reachabilityChanged,object: reachability)
         do{
             try reachability.startNotifier()
         }catch{
@@ -43,7 +43,7 @@ class ReachabilityHelper {
     // Function that checks for the device's internet connection
     // 1. If there is no internet connection then display "No Internet Connection" banner
     static func checkForInternetConnection() {
-        if !reachability.isReachable {
+        if reachability.connection == .none {
             print("Network not reachable")
             BannerHelper.displayNoInternetConnectionBanner()
         }

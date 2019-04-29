@@ -15,10 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        FIRApp.configure() // Configure default Firebase app (use Firebase library to configure APIs)
-        FIRDatabase.database().persistenceEnabled = true // Enable offline firebase database capabilities
+        FirebaseApp.configure() // Configure default Firebase app (use Firebase library to configure APIs)
         
         // Setup the reachability notification to monitor device's network state and respond appropriately
         ReachabilityHelper.setupReachabilityNotification()

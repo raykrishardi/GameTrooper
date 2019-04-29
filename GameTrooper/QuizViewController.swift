@@ -69,7 +69,7 @@ class QuizViewController: UIViewController {
     var motionManager: CMMotionManager = CMMotionManager()
     
     // Variable that represents a reference to the "quiz" node in firebase database
-    var quizRef: FIRDatabaseReference!
+    var quizRef: DatabaseReference!
     
     // Variable that represents an array of quiz questions fetched from the firebase database
     var quizQuestionArray: [QuizQuestion] = []
@@ -86,7 +86,7 @@ class QuizViewController: UIViewController {
         super.viewDidLoad()
         
         // Get a reference to the "quiz" node in firebase database and make sure that the firebase database is kept synced (i.e. sync local cached data with the data in firebase database)
-        quizRef = FIRDatabase.database().reference(withPath: "quiz")
+        quizRef = Database.database().reference(withPath: "quiz")
         quizRef.keepSynced(true)
         
         // Fetch quiz questions from the firebase database
@@ -111,7 +111,7 @@ class QuizViewController: UIViewController {
             // Loop through all fetched quiz questions
             for item in snapshot.children {
                 // Create quiz question object from the fetched quiz questions and append the newly created quiz question object to the quizQuestionArray
-                let quizItem = QuizQuestion(snapshot: item as! FIRDataSnapshot)
+                let quizItem = QuizQuestion(snapshot: item as! DataSnapshot)
                 self.quizQuestionArray.append(quizItem)
             }
             

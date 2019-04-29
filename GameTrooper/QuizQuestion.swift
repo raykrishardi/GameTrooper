@@ -22,7 +22,7 @@ class QuizQuestion {
     let detail: String
     
     // Constant that represents the firebase database reference to a particular quiz question
-    let ref: FIRDatabaseReference?
+    let ref: DatabaseReference?
     
     //---------------------------------------------------------------------------------------------------------------------------
     //                                                            Source:
@@ -32,7 +32,7 @@ class QuizQuestion {
     //---------------------------------------------------------------------------------------------------------------------------
     
     // 1-parameter constructor that initialises the quiz question object with the appropriate values based on the given firebase data snapshot
-    init(snapshot: FIRDataSnapshot) {
+    init(snapshot: DataSnapshot) {
         
         // Initialise the question based on the given firebase data snapshot's key (quiz question as snapshot key)
         question = snapshot.key

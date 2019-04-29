@@ -33,7 +33,7 @@ class GameNewsViewController: UIViewController, UITableViewDataSource, UITableVi
     let maxNumberOfNewsForEachPage: Int = 5
     
     // Variable that represents a reference to the "news" node in firebase database
-    var newsRef: FIRDatabaseReference!
+    var newsRef: DatabaseReference!
     
     // Variable that represents the refresh control for the built-in "pull-to-refresh" gesture
     var refreshControl: UIRefreshControl!
@@ -53,7 +53,7 @@ class GameNewsViewController: UIViewController, UITableViewDataSource, UITableVi
         ReachabilityHelper.checkForInternetConnection()
         
         // Get a reference to the "news" node in firebase database and make sure that the firebase database is kept synced (i.e. sync local cached data with the data in firebase database)
-        newsRef = FIRDatabase.database().reference(withPath: "news")
+        newsRef = Database.database().reference(withPath: "news")
         newsRef.keepSynced(true)
         
         // Setup the refresh control for the built-in "pull-to-refresh" gesture
@@ -95,7 +95,7 @@ class GameNewsViewController: UIViewController, UITableViewDataSource, UITableVi
             // Loop through all fetched news
             for item in snapshot.children {
                 // Create news object from the fetched news and append the newly created news object to the firstOneHundredNewsArray
-                let newsItem = News(snapshot: item as! FIRDataSnapshot)
+                let newsItem = News(snapshot: item as! DataSnapshot)
                 self.firstOneHundredNewsArray.append(newsItem)
             }
             
@@ -141,7 +141,7 @@ class GameNewsViewController: UIViewController, UITableViewDataSource, UITableVi
     // Function that will be executed when the "pull-to-refresh" gesture is performed
     // 1. Check for the device's internet connection and display the "No Internet Connection" banner if there is no internet connection
     // 2. Fetch news from firebase database
-    func refresh(sender:AnyObject) {
+    @objc func refresh(sender:AnyObject) {
         ReachabilityHelper.checkForInternetConnection()
         fetchNews()
     }
@@ -197,7 +197,7 @@ class GameNewsViewController: UIViewController, UITableViewDataSource, UITableVi
             // If the urlToImage attribute value is a valid url then set the appropriate image to the image view by using the given url (SDWebImage is used to download and set the image from the url)
             // If the urlToImage attribute value is NOT a valid url then set the default placeholder image to the image view
             // Options -> continue downloading the image if the app goes to background and enables progressive download
-            gameNewsCell.newsImageView.sd_setImage(with: newsUrlToImage, placeholderImage: #imageLiteral(resourceName: "placeholder-image"), options: [.continueInBackground, .progressiveDownload])
+            gameNewsCell.newsImageView.sd_setImage(with: newsUrlToImage, placeholderImage: #imageLiteral(resourceName: "placeholder-image"))
             
             //-------------------------------------------------------------------------------------------------------------------
             

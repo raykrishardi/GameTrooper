@@ -53,19 +53,19 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
     let audioEngine = AVAudioEngine()
     
     // Variable that represents a reference to the "game-stores" node in firebase database
-    var gameStoresRef: FIRDatabaseReference!
+    var gameStoresRef: DatabaseReference!
 
     // Function that will be executed when the view has been added to the view hierarchy (i.e. view has appeared on the screen)
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
         // Get a reference to the "game-stores" node in firebase database and make sure that the firebase database is kept synced (i.e. sync local cached data with the data in firebase database)
-        gameStoresRef = FIRDatabase.database().reference(withPath: "game-stores")
+        gameStoresRef = Database.database().reference(withPath: "game-stores")
         gameStoresRef.keepSynced(true)
         
         // Check for the device's internet connection
         // If there is no internet connection then display "No Internet Connection" banner and fetch local cached game stores from firebase database
-        if !ReachabilityHelper.reachability.isReachable {
+        if ReachabilityHelper.reachability.connection == .none {
             BannerHelper.displayNoInternetConnectionBanner()
             self.fetchGameStoresFromFirebase()
         }
@@ -119,6 +119,8 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
                     print("Access to speech recognition restricted on this device")
                 case .notDetermined:
                     print("Access to speech recognition not yet authorized")
+                @unknown default:
+                    fatalError("Error accessing speech recognition")
                 }
                 
             })
@@ -258,7 +260,7 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
             // Loop through all fetched game stores
             for item in snapshot.children {
                 // Create game store annotation object from the fetched game stores, append the newly created object to the gameStoresArray, and add the game store annotation to the gameStoresMapView
-                let gameStoreAnnotationItem = GameStoreAnnotation(snapshot: item as! FIRDataSnapshot)
+                let gameStoreAnnotationItem = GameStoreAnnotation(snapshot: item as! DataSnapshot)
                 self.gameStoresArray.append(gameStoreAnnotationItem)
                 self.gameStoresMapView.addAnnotation(gameStoreAnnotationItem)
             }
@@ -294,45 +296,45 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
         // Set a timer of 5 seconds
         // When the timer has ended, stop the recording session and filter the game stores based on the search bar text
         let timer = Timer(timeInterval: 5.0, target: self, selector: #selector(MapViewController.timerEnded), userInfo: nil, repeats: false)
-        RunLoop.current.add(timer, forMode: .commonModes)
+        RunLoop.current.add(timer, forMode: .common)
         
         do {
             // Setup and start an audio session with the appropriate configurations:
             // 1. Set the category as recording
             // 2. Set the mode as measurement
             let audioSession = AVAudioSession.sharedInstance()
-            try audioSession.setCategory(AVAudioSessionCategoryRecord)
-            try audioSession.setMode(AVAudioSessionModeMeasurement)
-            try audioSession.setActive(true, with: .notifyOthersOnDeactivation) // Activate the audio session
+            try audioSession.setCategory(AVAudioSession.Category.record)
+            try audioSession.setMode(AVAudioSession.Mode.measurement)
+            try audioSession.setActive(true, options: .notifyOthersOnDeactivation) // Activate the audio session
             
             // Attempt to get a reference to the audio engine's input node
-            if let inputNode = audioEngine.inputNode {
+            let inputNode = audioEngine.inputNode
                 
-                // Specify that the results should be reported partially instead of reporting the final results only
-                recognitionRequest.shouldReportPartialResults = true
+            // Specify that the results should be reported partially instead of reporting the final results only
+            recognitionRequest.shouldReportPartialResults = true
+            
+            // Perform speech recognition
+            recognitionTask = speechRecognizer.recognitionTask(with: recognitionRequest, resultHandler: { (result, error) in
                 
-                // Perform speech recognition
-                recognitionTask = speechRecognizer.recognitionTask(with: recognitionRequest, resultHandler: { (result, error) in
-                    
-                    // If there is a result (result != nil) then assign the search bar text as the transcription result with highest level of confidence
-                    if let result = result {
-                        self.gameStoresSearchBar.text = result.bestTranscription.formattedString
-                    }
-                    
-                })
+                // If there is a result (result != nil) then assign the search bar text as the transcription result with highest level of confidence
+                if let result = result {
+                    self.gameStoresSearchBar.text = result.bestTranscription.formattedString
+                }
                 
-                // Add the audio input to the recognition request by first removing the tap on bus 0 before installing it again to prevent AVFoundation exception
-                let recordingFormat = inputNode.outputFormat(forBus: 0)
-                inputNode.removeTap(onBus: 0)
-                inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat, block: { (buffer, when) in
-                    self.recognitionRequest.append(buffer)
-                })
+            })
+            
+            // Add the audio input to the recognition request by first removing the tap on bus 0 before installing it again to prevent AVFoundation exception
+            let recordingFormat = inputNode.outputFormat(forBus: 0)
+            inputNode.removeTap(onBus: 0)
+            inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat, block: { (buffer, when) in
+                self.recognitionRequest.append(buffer)
+            })
+            
+            // Prepare and start the audio engine
+            audioEngine.prepare()
+            try audioEngine.start()
                 
-                // Prepare and start the audio engine
-                audioEngine.prepare()
-                try audioEngine.start()
-                
-            }
+            
             
         }
         catch {
@@ -342,7 +344,7 @@ class MapViewController: UIViewController, UITableViewDataSource, UITableViewDel
     }
     
     // Function that will be executed when the timer of 5 seconds has ended
-    func timerEnded() {
+    @objc func timerEnded() {
         // If the audio engine is running then stop recording and filter the game stores based on the search bar text
         if audioEngine.isRunning {
             stopRecording()

@@ -29,7 +29,7 @@ class ActivityIndicatorViewHelper {
     static func setupActivityIndicatorView(view: UIView){
         activityIndicatorView.center = view.center
         activityIndicatorView.hidesWhenStopped = true
-        activityIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        activityIndicatorView.style = UIActivityIndicatorView.Style.gray
         view.addSubview(activityIndicatorView)
     }
 
@@ -60,7 +60,7 @@ class ActivityIndicatorViewHelper {
     static func setupFooterActivityIndicatorView(tableView: UITableView){
         activityIndicatorView.frame = CGRect(x: 0, y: 0, width: 320, height: 45)
         activityIndicatorView.hidesWhenStopped = true
-        activityIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        activityIndicatorView.style = UIActivityIndicatorView.Style.gray
         tableView.tableFooterView = activityIndicatorView
     }
 

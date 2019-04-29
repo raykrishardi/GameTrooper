@@ -34,7 +34,7 @@ class News {
     let publishedAt: String
     
     // Constant that represents the firebase database reference to a particular news
-    let ref: FIRDatabaseReference?
+    let ref: DatabaseReference?
     
     //---------------------------------------------------------------------------------------------------------------------------
     //                                                            Source:
@@ -44,7 +44,7 @@ class News {
     //---------------------------------------------------------------------------------------------------------------------------
 
     // 1-parameter constructor that initialises the news object with the appropriate values based on the given firebase data snapshot
-    init(snapshot: FIRDataSnapshot) {
+    init(snapshot: DataSnapshot) {
         
         // Initialise the key based on the given firebase data snapshot's key
         key = snapshot.key

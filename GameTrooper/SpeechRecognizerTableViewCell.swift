@@ -18,15 +18,15 @@ class SpeechRecognizerTableViewCell: UITableViewCell {
     // 1. Change the image of the button to an audio wave image to indicate that the speech recognition has started
     // 2. Set a timer of 5 seconds and change the image of the button back to microphone image when the timer ends to indicate that the speech recognition has finished
     @IBAction func speechRecognizerButtonTapped() {
-        speechRecognizerButton.setImage(#imageLiteral(resourceName: "Audio Wave"), for: UIControlState.normal)
+        speechRecognizerButton.setImage(#imageLiteral(resourceName: "Audio Wave"), for: UIControl.State.normal)
         let timer = Timer(timeInterval: 5.0, target: self, selector: #selector(SpeechRecognizerTableViewCell.timerEnded), userInfo: nil, repeats: false)
-        RunLoop.current.add(timer, forMode: .commonModes)
+        RunLoop.current.add(timer, forMode: .common)
     }
     
     // Function that will be executed when the timer ends
     // 1. Change the image of the button back to microphone image to indicate that the speech recognition has finished
-    func timerEnded() {
-        speechRecognizerButton.setImage(#imageLiteral(resourceName: "Microphone"), for: UIControlState.normal)
+    @objc func timerEnded() {
+        speechRecognizerButton.setImage(#imageLiteral(resourceName: "Microphone"), for: UIControl.State.normal)
     }
     
     //-----------------------------------------------------------------
